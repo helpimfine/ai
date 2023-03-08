@@ -32,7 +32,7 @@ export default function Home() {
     });
     let prediction = (await response.json()) as Prediction;
     if (response.status !== 201) {
-      setError(prediction.detail);
+      setError(prediction.detail ?? null);
       return;
     }
     setPrediction(prediction);
@@ -45,7 +45,7 @@ export default function Home() {
       const response = await fetch("/api/predictions/" + prediction.id);
       prediction = (await response.json()) as Prediction;
       if (response.status !== 200) {
-        setError(prediction.detail);
+        setError(prediction.detail ?? null);
         return;
       }
       setPrediction(prediction);
